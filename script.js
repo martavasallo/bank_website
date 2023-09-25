@@ -30,3 +30,30 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
+
+// --- SMOOTH SCROLLING -------------------------------------------------------
+// when clicking Learn more button, will scroll to next section
+// select button and section you want to scroll to
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+
+btnScrollTo.addEventListener('click', function (e) {
+  // give coordinates of where you want to scroll to
+  const s1coords = section1.getBoundingClientRect()
+  //console.log(s1coords); gives coordinates and properties
+  console.log(e.target.getBoundingClientRect()); // e.target is the element just clicked
+  console.log('Current scroll (X/Y)', window.pageXOffset, pageYOffset);
+  // x is zero, no scroll horizontal
+  // y is the scroll from top to viewport to top of the page
+
+  // old way to do it
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth'
+  // })
+  // new way supperted by new browsers
+  section1.scrollIntoView({behavior: 'smooth'})
+})
